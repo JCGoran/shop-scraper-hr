@@ -3,6 +3,7 @@ name: build-docs
 # Only run this when the master branch changes
 on:
   pull_request:
+  workflow_dispatch:
   push:
     branches:
     - master
