@@ -3,7 +3,7 @@ name = "shop-scraper-hr"
 version = "0.1.0"
 description = "Scraper for prices of goods in Croatian supermarkets"
 authors = ["JCGoran <jcgoran@protonmail.com>"]
-license = "GPL"
+license = "GPL-3.0-or-later"
 readme = "README.md"
 packages = [{include = "shop_scraper_hr"}]
 
