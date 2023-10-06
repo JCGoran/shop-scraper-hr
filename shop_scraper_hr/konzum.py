@@ -1,5 +1,5 @@
 """
-Utilities for scraping categories and prices from konzum.hr
+Module containing utilities for scraping categories and prices from konzum.hr
 """
 
 from __future__ import annotations
@@ -79,14 +79,19 @@ def parse_page(content: str) -> list[dict[str, Any]]:
 
 
 def get_prices(
-    category_url: str,
+    url: str,
     max_workers: int = 1,
     **kwargs,
 ) -> list[dict[str, Any]]:
     """
     Get the prices of all of the items in a particular category.
+
+    Parameters
+    ----------
+    url : str
+        the URL of a category from which to fetch the prices
     """
-    response = requests.get(category_url, **kwargs)
+    response = requests.get(url, **kwargs)
     soup = BeautifulSoup(response.text, "html.parser")
     result = parse_page(response.text)
 
@@ -100,7 +105,7 @@ def get_prices(
             future_results = [
                 executor.submit(
                     requests.get,
-                    f"{category_url}?page={page}",
+                    f"{url}?page={page}",
                     **kwargs,
                 )
                 for page in range(1, pages + 1)

@@ -1,5 +1,5 @@
 """
-Module for extracting data from ``konzum.hr``
+Module containing common utilities
 """
 from __future__ import annotations
 

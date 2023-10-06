@@ -1,5 +1,5 @@
 """
-Utilities for scraping categories and prices from tommy.hr
+Module containing utilities for scraping categories and prices from tommy.hr
 """
 from __future__ import annotations
 
@@ -15,7 +15,10 @@ from shop_scraper_hr.common import get_category_urls_generic, parse_price_string
 MAIN_URL = "https://www.tommy.hr"
 
 
-def get_category_urls(**kwargs):
+def get_category_urls(**kwargs) -> list[str]:
+    """
+    Return a list of URLs to all categories.
+    """
     return get_category_urls_generic(
         MAIN_URL,
         prefix="/kategorije/",
@@ -26,6 +29,12 @@ def get_category_urls(**kwargs):
 def parse_item(item) -> dict[str, Any]:
     """
     Parse a given item and return a dictionary that maps to its metadata.
+
+    Returns
+    -------
+    result : dict
+        the dictionary with at least the keys ``url``, ``title``, and
+        ``price_data``
     """
     url = MAIN_URL + item.find("h3").find("a")["href"]
     title = item.find("h3").text.strip()
@@ -49,11 +58,16 @@ def parse_item(item) -> dict[str, Any]:
     }
 
 
-def get_prices(category_url: str, **kwargs) -> list[dict[str, Any]]:
+def get_prices(url: str, **kwargs) -> list[dict[str, Any]]:
     """
     Get the prices of all of the items in a particular category.
+
+    Parameters
+    ----------
+    url : str
+        the URL of a category from which to fetch the prices
     """
-    response = requests.get(category_url, **kwargs)
+    response = requests.get(url, **kwargs)
     content = BeautifulSoup(response.text, "html.parser")
     items = content.find_all(class_="w-full h-full flex flex-col my-4 leading-normal")
 
@@ -62,7 +76,7 @@ def get_prices(category_url: str, **kwargs) -> list[dict[str, Any]]:
 
 def get_all_prices(max_workers: int = 1, **kwargs):
     """
-    Get prices for all items from konzum.hr
+    Get prices for all items from tommy.hr
 
     Parameters
     ----------
