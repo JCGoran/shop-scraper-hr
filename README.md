@@ -30,7 +30,7 @@ poetry install
 
 ```python
 >>> # for getting data from Konzum
->>> from shop_scraper_hr import konzum
+>>> from shop_scraper_hr.scrapers import konzum
 >>> # get a list of all categories
 >>> categories = konzum.get_category_urls()
 >>> # get a list of prices from a category
