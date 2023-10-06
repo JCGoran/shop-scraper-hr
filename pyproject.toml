@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "shop-scraper-hr"
-version = "0.1.0"
+version = "0.1.1"
 description = "Scraper for prices of goods in Croatian supermarkets"
 authors = ["JCGoran <jcgoran@protonmail.com>"]
 license = "GPL-3.0-or-later"
