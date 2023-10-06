@@ -1,0 +1,25 @@
+[tool.poetry]
+name = "shop-scraper-hr"
+version = "0.1.0"
+description = "Scraper for prices of goods in Croatian supermarkets"
+authors = ["JCGoran <jcgoran@protonmail.com>"]
+license = "GPL"
+readme = "README.md"
+packages = [{include = "shop_scraper_hr"}]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+requests = "^2.31.0"
+beautifulsoup4 = "^4.12.2"
+
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^7.4.2"
+black = "^23.9.1"
+pylint = "^3.0.1"
+mypy = "^1.5.1"
+pdoc = "^14.1.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
